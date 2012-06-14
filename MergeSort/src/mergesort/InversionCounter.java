@@ -31,7 +31,7 @@ public class InversionCounter {
             if (i >= arr1.length) {
                 // we've used up all the left hand array (arr1), so
                 // pivot the right hand array (arr2)
-                if (arr2.length > 2) {
+                if (arr2.length > 1) {
                     int[] newArr = new int[arr2.length-j];
                     System.arraycopy(arr2, j, newArr, 0, newArr.length);
                     count+=countInversions(newArr);
@@ -40,14 +40,12 @@ public class InversionCounter {
             }
             else if (j >= arr2.length) {
                 // use all left
-                // TODO recursive here:
                 if (arr1.length > 1) {
                     int[] newArr = new int[arr1.length-i];
                     System.arraycopy(arr1, i, newArr, 0, newArr.length);
                     count+=countInversions(newArr);
                 }
             }
-            // real logic
             else if (arr1[i] < arr2[j]) {
                 i++;
             }

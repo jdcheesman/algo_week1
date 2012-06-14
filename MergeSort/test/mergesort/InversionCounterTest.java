@@ -51,6 +51,13 @@ public class InversionCounterTest {
     }
     
     @Test
+    public void testCountInversions_lh1() {
+        int[] data = {2,1,3,4,5,6};
+        int expectedResult = 1;
+        assertEquals(expectedResult, ic.countInversions(data));
+    }
+    
+    @Test
     public void testCountInversions_rh2() {
         int[] data = {1,2,3,5,6,4};
         int expectedResult = 2;
