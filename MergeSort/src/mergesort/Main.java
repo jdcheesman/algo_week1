@@ -38,6 +38,8 @@ public class Main {
                 data.add(tmp);
             }
             else {
+                System.out.println("rfeading something else!");        
+
                 scanner.nextLine();
             }
             
