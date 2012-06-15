@@ -3,9 +3,8 @@
  * and open the template in the editor.
  */
 package mergesort;
-
-import org.junit.*;
 import static org.junit.Assert.*;
+import org.junit.*;
 
 /**
  *
@@ -58,6 +57,44 @@ public class SorterTest {
         int[] unsorted = {3,2,1,4,6,7,5};
         int[] sorted = {1,2,3,4,5,6,7};
         assertArrayEquals(sorted, sorter.mergeSort(unsorted));
+        assertEquals(5, sorter.getInversions());
     }
+    
+    
+    @Test
+    public void testMergeSort_rh1() {
+        System.out.println("testMergeSort_rh1");
+        int[] unsorted = {1,2,3,4,5,7,6};
+        int[] sorted = {1,2,3,4,5,6,7};
+        assertArrayEquals(sorted, sorter.mergeSort(unsorted));
+        assertEquals(1, sorter.getInversions());
+    }    
+    
+    @Test
+    public void testMergeSort_lh1() {
+        System.out.println("testMergeSort_rh1");
+        int[] unsorted = {2,1,3,4,5,6,7};
+        int[] sorted = {1,2,3,4,5,6,7};
+        assertArrayEquals(sorted, sorter.mergeSort(unsorted));
+        assertEquals(1, sorter.getInversions());
+    }        
+
+    @Test
+    public void testMergeSort_none() {
+        System.out.println("testMergeSort_none");
+        int[] sorted = {1,2,3,4,5,6,7};
+        assertArrayEquals(sorted, sorter.mergeSort(sorted));
+        assertEquals(0, sorter.getInversions());
+    }        
+    
+
+    @Test
+    public void testMergeSort_reversed() {
+        System.out.println("testMergeSort_reversed");
+        int[] unsorted = {7,6,5,4,3,2,1};
+        int[] sorted = {1,2,3,4,5,6,7};
+        assertArrayEquals(sorted, sorter.mergeSort(unsorted));
+        assertEquals(21, sorter.getInversions());
+    }        
     
 }

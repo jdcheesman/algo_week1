@@ -37,6 +37,9 @@ public class Main {
                 }
                 data.add(tmp);
             }
+            else {
+                scanner.nextLine();
+            }
             
         }
         System.out.println("Read " + data.size() + " integers.");
@@ -46,7 +49,7 @@ public class Main {
         }
         System.out.println("Calling ic @" + System.currentTimeMillis());
         InversionCounter ic = new InversionCounter();
-        int result = ic.countInversions(dataToCheck);
+        long result = ic.countInversions(dataToCheck);
         System.out.println("Done @" + System.currentTimeMillis());
         System.out.println("Final count: " + result);
     }

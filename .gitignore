@@ -4,3 +4,8 @@
 *.jar
 *.war
 *.ear
+/MergeSort/dist/
+/MergeSort/build/
+
+# Backup files
+*~

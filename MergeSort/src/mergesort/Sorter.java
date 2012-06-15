@@ -10,15 +10,22 @@ package mergesort;
  */
 public class Sorter {
     
-    public int[] mergeSort(int[] toSort) {
-        int pivot = toSort.length / 2;
-        int[] arr1 = new int[pivot];
-        System.arraycopy(toSort, 0, arr1, 0, arr1.length);
+    private long inversions = 0;
 
-        int[] arr2 = new int[toSort.length-pivot];
-        System.arraycopy(toSort, pivot, arr2, 0, arr2.length);
+    public int[] mergeSort(int[] toSort) {
+        if (toSort.length <= 1) {
+            return toSort;
+        }
+        int pivot = toSort.length / 2;
+        int[] left = new int[pivot];
+        System.arraycopy(toSort, 0, left, 0, left.length);
+        left = mergeSort(left);
+
+        int[] right = new int[toSort.length-pivot];
+        System.arraycopy(toSort, pivot, right, 0, right.length);
+        right = mergeSort(right);
         
-        return merge(sort(arr1), sort(arr2));
+        return merge(left, right);
     }
     
     public int[] sort(int[] toSort) {
@@ -43,16 +50,22 @@ public class Sorter {
         int i=0;
         int j=0;
         for (int k=0; k<result.length; k++) {
-            if (i<arr1.length && arr1[i] < arr2[j]) {
+            if (j==arr2.length || (i<arr1.length && arr1[i] < arr2[j])) {
                 result[k] = arr1[i];
                 i++;
             }
             else {
                 result[k] = arr2[j];
                 j++;
+                if (i != arr1.length) {
+                    inversions+=(arr1.length-i);
+                }
             }
         }
         return result;
     }
     
+    public long getInversions() {
+        return inversions;
+    }
 }
