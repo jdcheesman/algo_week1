@@ -26,6 +26,7 @@ public class Main {
         if (f.isDirectory()) {
             throw new IllegalArgumentException("File " + args[0] + " is a directory");
         }
+        long start = System.currentTimeMillis();
         
         Scanner scanner = new Scanner(f);
         List<Integer> data = new ArrayList<>();
@@ -38,21 +39,20 @@ public class Main {
                 data.add(tmp);
             }
             else {
-                System.out.println("rfeading something else!");        
-
                 scanner.nextLine();
             }
             
         }
-        System.out.println("Read " + data.size() + " integers.");
         int[] dataToCheck = new int[data.size()];
         for (int i=0; i<dataToCheck.length; i++) {
             dataToCheck[i] = data.get(i).intValue();
         }
-        System.out.println("Calling ic @" + System.currentTimeMillis());
+        System.out.println("Date read time: " + (System.currentTimeMillis()-start) + " ms");
+        start = System.currentTimeMillis();
+
         InversionCounter ic = new InversionCounter();
         long result = ic.countInversions(dataToCheck);
-        System.out.println("Done @" + System.currentTimeMillis());
+        System.out.println("Done, time: " + (System.currentTimeMillis()-start) + " ms");
         System.out.println("Final count: " + result);
     }
     
